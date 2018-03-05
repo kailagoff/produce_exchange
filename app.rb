@@ -21,13 +21,20 @@ end
 
 get('/events') do
   @events = Event.all()
+  erb(:events)
 end
 
-post('/') do
+post('/events') do
   name = params.fetch('name')
   date = params.fetch('date')
   description = params.fetch('description')
   quadrant = params.fetch('quadrant')
-  event = Event.create({:name => name, :date => date, :description => description, :quadrant => quadrant, :id => nil})
-  redirect '/events'
+  @event = Event.create({:name => name, :date => date, :description => description, :quadrant => quadrant, :id => nil})
+  erb(:events)
+end
+
+get('/events/:id') do
+  @event = Event.find(params.fetch("id").to_i())
+  @available_users = User.all() - @event.users
+  erb :event_info
 end
