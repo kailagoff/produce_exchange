@@ -1,4 +1,4 @@
-<h2>Event Details: <%= @event.name %> </h2>
+<h2>Event Details: <%= @event.title %> </h2>
 
 <ul>
 
@@ -8,9 +8,22 @@
 
 </ul>
 
-<h4>Add <%= @user.name %> to event:</h4>
+<h4>Current growers who have RSVPed:</h4>
+
+<% if @event.users.any? %>
+  <ul>
+    <% @event.users.each do |user| %>
+      <li><%= user.name %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>This event has no attendees yet. Add your name!</p>
+<% end %>
+
+
+<h4>Add people to <%= @event.title %>:</h4>
 <% if @available_users.any? %>
-  <form action="/users/<%= @user.id() %>" method="post">
+  <form action="/events/<%= @event.id() %>" method="post">
     <div class="form-group">
       <select name="user_id">
         <% @available_users.each do |user| %>

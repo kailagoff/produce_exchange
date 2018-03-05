@@ -15,6 +15,7 @@ get('/') do
   erb:index
 end
 
+#produce
 get('/produce') do
   erb:produce_form
 end
@@ -36,6 +37,9 @@ end
 get('/users/index') do
   @users = User.find(session[:id])
   erb:'/users/index'
+
+get('/createaccount') do
+  erb:create_account
 end
 
 post('/produce') do
@@ -44,14 +48,40 @@ post('/produce') do
   erb:available
 end
 
-post('/account') do
-  @user = User.create({:name=> params['name'], :password => params['password'], :quadrant => params['quadrant'], :id => nil})
+post('/users') do
+  user = User.create({:name=> params['name'], :password => params['password'], :quadrant => params['quadrant'], :id => nil})
+  @users = User.all()
   session[:id] = @user.id
-  redirect 'users/index'
+  erb :accounts
 end
 
-get('/') do
-  erb :home
+get('/users') do
+  @users = User.all()
+  erb :accounts
+end
+
+get('/users/:id') do
+  @user = User.find(params.fetch("id").to_i())
+  erb :account_info
+end
+
+get('/users/:id/edit') do
+  @user = User.find(params.fetch("id").to_i())
+  erb :edit_account
+end
+
+patch('/users/:id') do
+  name = params['name']
+  @user = User.find(params.fetch("id").to_i())
+  @user.update({:name => name})
+  erb :account_info
+end
+
+delete('/users/:id') do
+  @user = User.find(params.fetch("id").to_i())
+  @user.delete()
+  @user = User.all()
+  redirect '/users'
 end
 
 #event
@@ -65,16 +95,45 @@ get('/events') do
 end
 
 post('/events') do
-  name = params.fetch('name')
-  date = params.fetch('date')
-  description = params.fetch('description')
-  quadrant = params.fetch('quadrant')
-  @event = Event.create({:name => name, :date => date, :description => description, :quadrant => quadrant, :id => nil})
-  erb'/events'
+  title = params['title']
+  date = params['date']
+  description = params['description']
+  quadrant = params['quadrant']
+  event = Event.create({:title => title, :date => date, :description => description, :quadrant => quadrant, :id => nil})
+  redirect '/events'
 end
 
 get('/events/:id') do
   @event = Event.find(params.fetch("id").to_i())
   @available_users = User.all() - @event.users
   erb :event_info
+end
+
+post('/events/:id')do
+  @event = Event.find(params.fetch("id").to_i())
+  found_user = User.find(params.fetch("user_id").to_i())
+  @event.users.push(found_user)
+  @available_users = User.all() - @event.users
+  erb :event_info
+end
+
+get('/events/:id/edit') do
+  @event = Event.find(params.fetch("id").to_i())
+  erb(:edit_event)
+end
+
+patch('/events/:id') do
+  title = params['title']
+  date = params['date']
+  @event = Event.find(params.fetch("id").to_i())
+  @event.update({:title => title, :date => date})
+  @available_users = User.all() - @event.users
+  erb(:event_info)
+end
+
+delete('/events/:id') do
+  @event = Event.find(params.fetch("id").to_i())
+  @event.delete()
+  @events = Event.all()
+  redirect '/events'
 end
