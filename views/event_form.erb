@@ -1,0 +1,26 @@
+<h2>Add a new event to the calendar:</h2>
+
+<form action="/events" method="post">
+  <div class="form-group">
+    <label class="form-label" for='name'>Name of Event:</label>
+    <input class="form-control" id='name' name='name' type='text'>
+    <br>
+    <!-- <label for="date">Event Date: </label><input id="date" type="date" value="2018-03-05"/> -->
+    <label class="form-label" for='date'>Date(MM/DD/YR):</label>
+    <input class="form-control" id='date' name='date' type='text'>
+    <br>
+    <label class="form-label" for='description'>Description:</label>
+    <input class="form-control" id='description' name='description' type='text'>
+    <br>
+    <label for="quadrant">Neighborhood:</label>
+    <select name="quadrant">
+      <option value="northeast">Northeast</option>
+      <option value="northwest">Northwest</option>
+      <option value="southeast">Southeast</option>
+      <option value="southwest">Southwest</option>
+    </select>
+    <br>
+    <br>
+    <button type="submit" class="button btn-success">Create Event!</button>
+  </div>
+</form>
