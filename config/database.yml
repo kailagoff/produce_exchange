@@ -1,0 +1,7 @@
+development:
+  adapter: postgresql
+  database: produce_exchange_development
+
+test:
+  adapter: postgresql
+  database: produce_exchange_test
