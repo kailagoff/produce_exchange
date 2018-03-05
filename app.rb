@@ -9,6 +9,8 @@ require("./lib/event")
 require("pg")
 require("pry")
 
+enable :sessions
+
 get('/') do
   erb:index
 end
@@ -17,13 +19,23 @@ get('/produce') do
   erb:produce_form
 end
 
+get('/produce/:id') do
+  @produce = Produce.find(params['id'])
+  erb:produceinfo
+end
+
 get('/available') do
   @produce = Produce.all
   erb:available
 end
 
-get('/createaccount') do
-  erb:createaccount
+get('/signup') do
+  erb:signup
+end
+
+get('/users/index') do
+  @users = User.find(session[:id])
+  erb:'/users/index'
 end
 
 post('/produce') do
@@ -33,8 +45,9 @@ post('/produce') do
 end
 
 post('/account') do
-  user = User.create({:name=> params['name'], :password => params['password'], :quadrant => params['quadrant'], :id => nil})
-  erb:index
+  @user = User.create({:name=> params['name'], :password => params['password'], :quadrant => params['quadrant'], :id => nil})
+  session[:id] = @user.id
+  redirect 'users/index'
 end
 
 get('/') do
