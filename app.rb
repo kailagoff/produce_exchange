@@ -24,7 +24,7 @@ get('/available') do
 end
 
 get('/createaccount') do
-  erb:createaccount
+  erb:create_account
 end
 
 post('/produce') do
@@ -33,15 +33,39 @@ post('/produce') do
   erb:available
 end
 
-post('/accounts') do
+post('/users') do
   user = User.create({:name=> params['name'], :password => params['password'], :quadrant => params['quadrant'], :id => nil})
   @users = User.all()
   erb :accounts
 end
 
-get('/accounts') do
+get('/users') do
   @users = User.all()
   erb :accounts
+end
+
+get('/users/:id') do
+  @user = User.find(params.fetch("id").to_i())
+  erb :account_info
+end
+
+get('/users/:id/edit') do
+  @user = User.find(params.fetch("id").to_i())
+  erb :edit_account
+end
+
+patch('/users/:id') do
+  name = params['name']
+  @user = User.find(params.fetch("id").to_i())
+  @user.update({:name => name})
+  erb :account_info
+end
+
+delete('/users/:id') do
+  @user = User.find(params.fetch("id").to_i())
+  @user.delete()
+  @user = User.all()
+  redirect '/users'
 end
 
 #event
