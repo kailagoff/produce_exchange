@@ -13,6 +13,7 @@ get('/') do
   erb:index
 end
 
+#produce
 get('/produce') do
   erb:produce_form
 end
@@ -32,13 +33,15 @@ post('/produce') do
   erb:available
 end
 
-post('/account') do
+post('/accounts') do
   user = User.create({:name=> params['name'], :password => params['password'], :quadrant => params['quadrant'], :id => nil})
-  erb:index
+  @users = User.all()
+  erb :accounts
 end
 
-get('/') do
-  erb :home
+get('/accounts') do
+  @users = User.all()
+  erb :accounts
 end
 
 #event
@@ -52,16 +55,24 @@ get('/events') do
 end
 
 post('/events') do
-  name = params.fetch('name')
-  date = params.fetch('date')
-  description = params.fetch('description')
-  quadrant = params.fetch('quadrant')
-  @event = Event.create({:name => name, :date => date, :description => description, :quadrant => quadrant, :id => nil})
-  erb'/events'
+  title = params['title']
+  date = params['date']
+  description = params['description']
+  quadrant = params['quadrant']
+  event = Event.create({:title => title, :date => date, :description => description, :quadrant => quadrant, :id => nil})
+  redirect '/events'
 end
 
 get('/events/:id') do
   @event = Event.find(params.fetch("id").to_i())
+  @available_users = User.all() - @event.users
+  erb :event_info
+end
+
+post('/events/:id')do
+  @event = Event.find(params.fetch("id").to_i())
+  found_user = User.find(params.fetch("user_id").to_i())
+  @event.users.push(found_user)
   @available_users = User.all() - @event.users
   erb :event_info
 end

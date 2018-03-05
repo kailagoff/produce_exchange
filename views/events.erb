@@ -3,7 +3,7 @@
 <% if @events.any?() %>
   <ul>
     <% @events.each do |event| %>
-    <li><a href="/events/<%= event.id() %>"><% project.title() %></a>
+    <li><a href="/events/<%= event.id() %>"><%= event.title() %></a>
     <% end %>
   </ul>
 
