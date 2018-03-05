@@ -14,6 +14,17 @@ get('/') do
   erb:index
 end
 
-post('/') do
-  erb:index
+get('/produce') do
+  erb:produce_form
+end
+
+get('/available') do
+  @produce = Produce.all
+  erb:available
+end
+
+post('/produce') do
+  produce = Produce.create({:produce_type=> params['produce_type'], :description => params['description'], :trade => params['trade'], :id => nil})
+  @produce = Produce.all
+  erb:available
 end
