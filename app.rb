@@ -1,12 +1,13 @@
-require('sinatra')
-require('sinatra/reloader')
-require('sinatra/activerecord')
-also_reload('lib/**/*.rb')
-require('pry')
-require('pg')
-require('User')
-require('Produce')
-require('Calendar')
+require("sinatra")
+require("sinatra/reloader")
+require "active_record"
+require "sinatra/activerecord"
+also_reload("lib/**/*.rb")
+require("./lib/User")
+require("./lib/Produce")
+require("./lib/Calendar")
+require("pg")
+require("pry")
 
 
 get('/') do
