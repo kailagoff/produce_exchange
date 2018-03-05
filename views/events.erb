@@ -1,0 +1,12 @@
+<h2>Welcome to the Events Page</h2>
+
+<% if @events.any?() %>
+  <ul>
+    <% @events.each do |event| %>
+    <li><a href="/events/<%= event.id() %>"><% project.title() %></a>
+    <% end %>
+  </ul>
+
+<% else %>
+  <p>There are no events yet!</p>
+<% end %>
