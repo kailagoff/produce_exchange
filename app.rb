@@ -76,3 +76,24 @@ post('/events/:id')do
   @available_users = User.all() - @event.users
   erb :event_info
 end
+
+get('/events/:id/edit') do
+  @event = Event.find(params.fetch("id").to_i())
+  erb(:edit_event)
+end
+
+patch('/events/:id') do
+  title = params['title']
+  date = params['date']
+  @event = Event.find(params.fetch("id").to_i())
+  @event.update({:title => title, :date => date})
+  @available_users = User.all() - @event.users
+  erb(:event_info)
+end
+
+delete('/events/:id') do
+  @event = Event.find(params.fetch("id").to_i())
+  @event.delete()
+  @events = Event.all()
+  redirect '/events'
+end
