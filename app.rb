@@ -4,7 +4,7 @@ require "active_record"
 require "sinatra/activerecord"
 also_reload("lib/**/*.rb")
 require("./lib/user")
-require("./lib/Produce")
+require("./lib/produce")
 require("./lib/event")
 require("pg")
 require("pry")
@@ -14,6 +14,16 @@ enable :sessions
 #home/login
 get('/') do
   erb :index
+end
+
+#produce
+get('/produce') do
+  erb :"produce/produce_form"
+end
+
+get('/available') do
+  @produce = Produce.all
+  erb :"produce/available"
 end
 
 get('/createaccount') do
