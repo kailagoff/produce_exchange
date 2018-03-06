@@ -11,18 +11,9 @@ require("pry")
 
 enable :sessions
 
+#home/login
 get('/') do
   erb :index
-end
-
-#produce
-get('/produce') do
-  erb :"product/produce_form"
-end
-
-get('/available') do
-  @produce = Produce.all
-  erb :"produce/available"
 end
 
 get('/createaccount') do
@@ -37,13 +28,52 @@ get '/logout' do #added, doesnt work?
   session.clear
 end
 
-post('/produce') do
-  produce = Produce.create({:produce_type=> params['produce_type'], :description => params['description'], :trade => params['trade'], :id => nil})
+#produce
+get('/produce') do
+  erb :"produce/produce_form"
+end
+
+get('/produce/available') do
   @produce = Produce.all
+  erb :"produce/available"
+end
+
+post('/produce/available') do
+  produce = Produce.create({:produce_type=> params['produce_type'], :description => params['description'], :trade => params['trade']})
+  @produce = Produce.all
+  @user = User.find_by(name: params["name"], password: params["password"])
   session[:id] = @user.id #changed this
   erb :"produce/available"
 end
 
+get('/produce/:id') do
+  @produce = Produce.find(params.fetch("id").to_i())
+  @user = User.find(params.fetch("id").to_i())
+  @produce.users.push(@user)
+  erb :"produce/produce_info"
+end
+
+get('/produce/:id/edit') do
+  @produce = Produce.find(params.fetch("id").to_i())
+  erb :"produce/edit_produce"
+end
+
+patch('/produce/:id') do
+  produce_type = params['produce_type']
+  description = params['description']
+  trade = params['trade']
+  @produce = Produce.find(params.fetch("id").to_i())
+  @produce.update({:produce_type => produce_type, :description => description, :trade => trade})
+  erb :"produce/produce_info"
+end
+
+delete('/produce/:id') do
+  @produce = Produce.find(params.fetch("id").to_i())
+  @produce.delete()
+  redirect '/produce/available'
+end
+
+#user
 post('/account_success') do #added all of this
   @user = User.create({:name=> params['name'], :password => params['password'], :quadrant => params['quadrant'], :id => nil})
   session[:id] = @user.id
