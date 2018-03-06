@@ -10,4 +10,7 @@ class Produce < ActiveRecord::Base
     self.produce_type = produce_type.downcase.titleize
   end
 
+  def self.findproduce
+    results = Produce.all.order('rating').reverse
+  end
 end
