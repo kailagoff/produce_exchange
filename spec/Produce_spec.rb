@@ -31,7 +31,7 @@ describe('Produce') do
       produce1 = Produce.create({:produce_type => "potatoes", :description => "a".*(140), :trade => "strawberries"})
       produce2 = Produce.create({:produce_type => "grape", :description => "a".*(140), :trade => "strawberries"})
       produce3 = Produce.create({:produce_type => "tomatoes", :description => "a".*(140), :trade => "strawberries"})
-      expect(Produce.findproduce(potatoes)).to(eq([produce1]))
+      expect(Produce.findproduce("Potatoes")).to(eq([produce1]))
     end
   end
 end
