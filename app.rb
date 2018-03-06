@@ -9,6 +9,8 @@ require("./lib/event")
 require("pg")
 require("pry")
 
+enable :sessions
+
 get('/') do
   erb :index
 end
@@ -27,10 +29,31 @@ get('/createaccount') do
   erb :"account/account_form"
 end
 
+get('/login') do #added this
+  erb :"account/login_form"
+end
+
+get '/logout' do #added, doesnt work?
+  session.clear
+end
+
 post('/produce') do
   produce = Produce.create({:produce_type=> params['produce_type'], :description => params['description'], :trade => params['trade'], :id => nil})
   @produce = Produce.all
+  session[:id] = @user.id #changed this
   erb :"produce/available"
+end
+
+post('/account_success') do #added all of this
+  @user = User.create({:name=> params['name'], :password => params['password'], :quadrant => params['quadrant'], :id => nil})
+  session[:id] = @user.id
+  erb :"/account/account_success"
+end
+
+post('/login_success') do #this too
+  @user = User.find_by(name: params["name"], password: params["password"])
+  session[:id] = @user.id
+  erb :"account/login_success" #and a file, in accounts, two files
 end
 
 post('/users') do
