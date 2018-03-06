@@ -12,8 +12,8 @@ describe('User') do
   end
 
   it("validates length of user name is less than 20 characters") do
-    user = User.new({:name => "a".*(16), :password => "sefafa"})
-    expect(user.save()).to(eq(true))
+    user = User.new({:name => "a".*(21), :password => "sefafa"})
+    expect(user.save()).to(eq(false))
   end
 
   it("tests for user name uniqueness") do
