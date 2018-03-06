@@ -39,7 +39,7 @@ get('/produce/available') do
 end
 
 post('/produce/available') do
-  produce = Produce.create({:produce_type=> params['produce_type'], :description => params['description'], :trade => params['trade']})
+  produce = Produce.create({:produce_type=> params['produce_type'], :description => params['description'], :trade => params['trade'], :user_id => params['user_id']})
   @produce = Produce.all
   @user = User.find_by(name: params["name"], password: params["password"])
   # session[:id] = @user.id #changed this
@@ -47,9 +47,8 @@ post('/produce/available') do
 end
 
 get('/produce/:id') do
-  @produce = Produce.find(params.fetch("id").to_i())
-  @user = User.find(params.fetch("id").to_i())
-  @produce.users.push(@user)
+  @produce = Produce.find(params.fetch("user_id").to_i())
+  # @user = Produce.find(params.fetch("user_id").to_i())
   erb :"produce/produce_info"
 end
 
@@ -62,8 +61,9 @@ patch('/produce/:id') do
   produce_type = params['produce_type']
   description = params['description']
   trade = params['trade']
+  @user = User.find(params.fetch("id").to_i())
   @produce = Produce.find(params.fetch("id").to_i())
-  @produce.update({:produce_type => produce_type, :description => description, :trade => trade})
+  @produce.update({:produce_type => produce_type})
   erb :"produce/produce_info"
 end
 
@@ -76,18 +76,18 @@ end
 #user
 post('/account_success') do #added all of this
   @user = User.create({:name=> params['name'], :password => params['password'], :quadrant => params['quadrant'], :id => nil})
-  session[:id] = @user.id
+  # session[:id] = @user.id
   erb :"/account/account_success"
 end
 
 post('/login_success') do #this too
   @user = User.find_by(name: params["name"], password: params["password"])
-  session[:id] = @user.id
+  # session[:id] = @user.id
   erb :"account/login_success" #and a file, in accounts, two files
 end
 
 post('/users') do
-  user = User.create({:name=> params['name'], :password => params['password'], :quadrant => params['quadrant'], :id => nil})
+  @user = User.create({:name=> params['name'], :password => params['password'], :quadrant => params['quadrant'], :profile => params['profile'], :id => nil})
   @users = User.all()
   erb :"account/accounts"
 end
@@ -116,9 +116,8 @@ end
 
 delete('/users/:id') do
   @user = User.find(params.fetch("id").to_i())
-  @produce = Produce.find(params.fetch("id").to_i())
+  @user.produces.clear
   @user.delete()
-  @user = User.all()
   redirect '/users'
 end
 
