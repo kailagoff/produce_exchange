@@ -3,8 +3,7 @@
 <ul>
   <li>Description: <%= @produce.description %></li>
   <li>Looking to trade for: <%= @produce.trade %></li>
-  <li>Grower:
-    <li><a href="/users/<%= @user.id() %>"><%= @user.name %></option></li>
+  <li>Grower:<%= @found_user.name %></li>
   </li>
 </ul>
 

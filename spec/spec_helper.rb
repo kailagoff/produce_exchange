@@ -1,23 +1,22 @@
 ENV['RACK_ENV'] = 'test'
-require 'rspec' 
+require 'rspec'
 require 'pry'
 require 'pg'
-require 'User'
-require 'Produce'
-require 'Calendar'
+require("sinatra/activerecord")
+require 'user'
+require 'produce'
+require 'event'
 
 RSpec.configure do |config|
   config.after(:each) do
-    User.all().each() do |user|
-      user.destroy()
+    User.all().each() do |users|
+      users.destroy()
     end
   end
-    Produce.all().each() do |produce|
-      produce.destroy()
+    Produce.all().each() do |produces|
+      produces.destroy()
     end
-  end
-    Calendar.all().each() do |calendar|
-      calendar.destroy()
+    Event.all().each() do |events|
+      events.destroy()
     end
-  end
 end

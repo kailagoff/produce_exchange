@@ -39,16 +39,18 @@ get('/produce/available') do
 end
 
 post('/produce/available') do
-  produce = Produce.create({:produce_type=> params['produce_type'], :description => params['description'], :trade => params['trade'], :user_id => params['user_id']})
+  @user_id = User.findbyname(params.fetch("name"))
+  produce = Produce.create({:produce_type=> params['produce_type'], :description => params['description'], :trade => params['trade'], :user_id => @user_id})
   @produce = Produce.all
-  @user = User.find_by(name: params["name"], password: params["password"])
+
   # session[:id] = @user.id #changed this
   erb :"produce/available"
 end
 
 get('/produce/:id') do
-  @produce = Produce.find(params.fetch("user_id").to_i())
-  # @user = Produce.find(params.fetch("user_id").to_i())
+  @produce = Produce.find(params.fetch("id").to_i())
+  @id = @produce.user_id.to_i()
+  @found_user = User.find(@id)
   erb :"produce/produce_info"
 end
 
