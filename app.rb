@@ -42,7 +42,7 @@ post('/produce/available') do
   produce = Produce.create({:produce_type=> params['produce_type'], :description => params['description'], :trade => params['trade']})
   @produce = Produce.all
   @user = User.find_by(name: params["name"], password: params["password"])
-  session[:id] = @user.id #changed this
+  # session[:id] = @user.id #changed this
   erb :"produce/available"
 end
 
@@ -116,6 +116,7 @@ end
 
 delete('/users/:id') do
   @user = User.find(params.fetch("id").to_i())
+  @produce = Produce.find(params.fetch("id").to_i())
   @user.delete()
   @user = User.all()
   redirect '/users'

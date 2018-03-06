@@ -1,0 +1,22 @@
+<h1>Edit <%= @produce.produce_type() %> </h1>
+
+<form action="/produce/<%= @produce.id() %>" method="post">
+  <input name="_method" type="hidden" value="patch">
+
+    <label for="produce_type">Rename the event:</label>
+    <input id="produce_type" name="produce_type" type="text">
+
+    <label for="description">Change description:</label>
+    <input id="description" name="description" type="text">
+
+    <label for="trade">Change trade:</label>
+    <input id="trade" name="trade" type="text">
+
+    <button type="submit" class="button btn-success">Update Produce</button>
+</form>
+
+<form action="/produce/<%= @produce.id() %>" method="post">
+  <input name="_method" type="hidden" value="delete">
+
+  <button type="submit" class="button btn-danger">Delete Produce</button>
+</form>

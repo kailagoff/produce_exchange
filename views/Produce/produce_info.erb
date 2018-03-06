@@ -1,13 +1,11 @@
 <h2>Produce Details: <%= @produce.produce_type %> </h2>
 
 <ul>
-
-<li>Description: <%= @produce.description %></li>
-<li>Looking to trade for: <%= @produce.trade %></li>
-<li>Grower: <% @produce.users.each do |user| %>
-  <li><a href="/users/<%= @user.id() %>"><%= user.name %></option></li>
-
-<% end %>
-</li>
-
+  <li>Description: <%= @produce.description %></li>
+  <li>Looking to trade for: <%= @produce.trade %></li>
+  <li>Grower:
+    <li><a href="/users/<%= @user.id() %>"><%= @user.name %></option></li>
+  </li>
 </ul>
+
+<p><a href="/produce/<%= @produce.id() %>/edit">Edit Produce</a></p>
