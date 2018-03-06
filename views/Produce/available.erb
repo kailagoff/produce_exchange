@@ -1,7 +1,11 @@
 <% if @produce.any?() %>
-      <h3>Current Listings</h3>
-      <hr>
-      <% @produce.each do |produce| %>
-      <h5><a href="/produce/<%= produce.id()%>"><%= produce.produce_type %></a></h5>
-      <% end %>
-    <% end %>
+  <h2>Current Listings</h2>
+  <hr>
+  <% @produce.each do |produce| %>
+  <h4><a href="/produce/<%= produce.id()%>"><%= produce.produce_type %></a></h4>
+  <% end %>
+<% else %>
+  <h4>There are no listings yet!</h4>
+<% end %>
+
+<p><a href="/produce">Add a Produce Listing</a></p>

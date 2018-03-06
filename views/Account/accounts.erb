@@ -1,12 +1,10 @@
-<h2>All Users</h2>
-
 <% if @users.any?() %>
-  <ul>
-    <% @users.each do |user| %>
-    <li><a href="/users/<%= user.id() %>"><%= user.name() %></a>
-    <% end %>
-  </ul>
+  <h2>All Growers</h2>
+  <hr>
+      <% @users.each do |user| %>
+      <h4><a href="/users/<%= user.id() %>"><%= user.name() %></a></h4>
+      <% end %>
 
 <% else %>
-  <p>There are no users yet!</p>
+  <p>There are no growers yet!</p>
 <% end %>

@@ -31,6 +31,13 @@ ActiveRecord::Schema.define(version: 20180306184523) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "produce_users", force: :cascade do |t|
+    t.integer "produce_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "produces", force: :cascade do |t|
     t.string "produce_type"
     t.string "description"

@@ -3,8 +3,10 @@
 <ul>
   <li>Description: <%= @produce.description %></li>
   <li>Looking to trade for: <%= @produce.trade %></li>
-  <li>Grower:<%= @found_user.name %></li>
+  <li>Grower: <%= @found_user.name %></li>
   </li>
 </ul>
 
-<p><a href="/produce/<%= @produce.id() %>/edit">Edit Produce</a></p>
+<br>
+<p><a href="/produce/<%= @produce.id() %>/edit">Edit Produce Details</a></p>
+<p><a href="/produce">Add Another Piece of Produce</a></p>
