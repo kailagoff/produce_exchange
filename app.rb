@@ -3,78 +3,62 @@ require("sinatra/reloader")
 require "active_record"
 require "sinatra/activerecord"
 also_reload("lib/**/*.rb")
-require("./lib/User")
+require("./lib/user")
 require("./lib/Produce")
 require("./lib/event")
 require("pg")
 require("pry")
 
-enable :sessions
-
 get('/') do
-  erb:index
+  erb :index
 end
 
 #produce
 get('/produce') do
-  erb:produce_form
-end
-
-get('/produce/:id') do
-  @produce = Produce.find(params['id'])
-  erb:produceinfo
+  erb :"product/produce_form"
 end
 
 get('/available') do
   @produce = Produce.all
-  erb:available
+  erb :"produce/available"
 end
-
-get('/signup') do
-  erb:signup
-end
-
-get('/users/index') do
-  @users = User.find(session[:id])
-  erb:'/users/index'
 
 get('/createaccount') do
-  erb:create_account
+  erb :"account/account_form"
 end
 
 post('/produce') do
   produce = Produce.create({:produce_type=> params['produce_type'], :description => params['description'], :trade => params['trade'], :id => nil})
   @produce = Produce.all
-  erb:available
+  erb :"produce/available"
 end
 
 post('/users') do
   user = User.create({:name=> params['name'], :password => params['password'], :quadrant => params['quadrant'], :id => nil})
   @users = User.all()
-  session[:id] = @user.id
-  erb :accounts
+  erb :"account/accounts"
 end
 
 get('/users') do
   @users = User.all()
-  erb :accounts
+  erb :"account/accounts"
 end
 
 get('/users/:id') do
   @user = User.find(params.fetch("id").to_i())
-  erb :account_info
+  erb :"account/account_info"
 end
 
 get('/users/:id/edit') do
   @user = User.find(params.fetch("id").to_i())
-  erb :edit_account
+  erb :"account/edit_account"
 end
 
 patch('/users/:id') do
   name = params['name']
   @user = User.find(params.fetch("id").to_i())
   @user.update({:name => name})
-  erb :account_info
+  erb :"account/account_info"
 end
 
 delete('/users/:id') do
@@ -86,12 +70,12 @@ end
 
 #event
 get('/events/new') do
-  erb :event_form
+  erb :"event/event_form"
 end
 
 get('/events') do
   @events = Event.all()
-  erb(:events)
+  erb :"event/events"
 end
 
 post('/events') do
@@ -106,7 +90,7 @@ end
 get('/events/:id') do
   @event = Event.find(params.fetch("id").to_i())
   @available_users = User.all() - @event.users
-  erb :event_info
+  erb :"event/event_info"
 end
 
 post('/events/:id')do
@@ -114,12 +98,12 @@ post('/events/:id')do
   found_user = User.find(params.fetch("user_id").to_i())
   @event.users.push(found_user)
   @available_users = User.all() - @event.users
-  erb :event_info
+  erb :"event/event_info"
 end
 
 get('/events/:id/edit') do
   @event = Event.find(params.fetch("id").to_i())
-  erb(:edit_event)
+  erb :"event/edit_event"
 end
 
 patch('/events/:id') do
@@ -128,7 +112,7 @@ patch('/events/:id') do
   @event = Event.find(params.fetch("id").to_i())
   @event.update({:title => title, :date => date})
   @available_users = User.all() - @event.users
-  erb(:event_info)
+  erb :"event/event_info"
 end
 
 delete('/events/:id') do
