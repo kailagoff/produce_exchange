@@ -20,4 +20,9 @@ describe('Produce') do
     produce1 = Produce.new({:produce_type => "potatoes", :description => "a".*(151), :trade => "strawberries"})
     expect(produce1.save()).to(eq(false))
   end
+
+  it("capitalizes the produce title") do
+    produce1 = Produce.create({:produce_type => "potatoes", :description => "a".*(140), :trade => "strawberries"})
+    expect(produce1.produce_type()).to(eq("Potatoes"))
+  end
 end
