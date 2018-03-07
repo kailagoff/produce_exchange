@@ -1,0 +1,13 @@
+<div class="container">
+
+<% if @produce.any?() %>
+
+  <h3>Here are all the listings matching your search. </h3>
+  <% @produce.each do |produce| %>
+  <h4><img src="<%= produce.image() %>" width="200" height ="200"><a href="/produce/<%= produce.id()%>"><%= produce.produce_type %></a></h4>
+  <% end %>
+<% else %>
+  <h4>There are no listings that match your search!</h4>
+<% end %>
+
+</div>

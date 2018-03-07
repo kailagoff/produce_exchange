@@ -5,7 +5,7 @@
 <% if @user.produces().any?() %>
   <ul>
     <% @user.produces().each() do |produce| %>
-      <li><%= produce.produce_type() %> </li>
+      <li><a href="/produce/<%= @produce.id() %>"><%= produce.produce_type() %> </li>
     <% end %>
   </ul>
 

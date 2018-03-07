@@ -6,6 +6,7 @@ also_reload("lib/**/*.rb")
 require("./lib/user")
 require("./lib/produce")
 require("./lib/event")
+require("./lib/offer")
 require("pg")
 require("pry")
 
@@ -42,6 +43,12 @@ get '/logout' do
 end
 
 #produce
+post('/search')do
+  @produce_type = params.fetch("produce_type")
+  @produce = Produce.findproduce(@produce_type)
+  erb :"produce/search"
+end
+
 get('/produce') do
   erb :"produce/produce_form"
 end
@@ -62,7 +69,7 @@ post('/produce/available') do
   # session[:id] = @user.id #changed this
   if params[:image] != nil
     url = params[:image]
-    @produce.add_image(url)
+    produce.add_image(url)
   end
   erb :"produce/available"
 end
@@ -123,6 +130,7 @@ end
 
 get('/users/:id') do
   @user = User.find(params.fetch("id").to_i())
+  @produce = Produce.find(params.fetch("id").to_i())
   erb :"account/account_info"
 end
 

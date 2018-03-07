@@ -10,7 +10,7 @@ class Produce < ActiveRecord::Base
   def add_image(url)
     @image = url
   end
-  
+
   private
   def normalize
     self.produce_type = produce_type.downcase.titleize
