@@ -10,14 +10,16 @@ class Produce < ActiveRecord::Base
     self.produce_type = produce_type.downcase.titleize
   end
 
-  def self.findproduce(search_term)
+  def self.findproduce(search_name)
     @allproduce = Produce.all
-    @results_array = []
-      @allproduce.each() do |produce|
-        if produce.produce_type == search_term
-          @results_array.push(produce)
-        end
+    results_array = []
+    @allproduce.each() do |produce|
+      if produce.produce_type.downcase == search_name.downcase
+        results_array.push(produce)
       end
-    @results_array = []
+    end
+    results_array
   end
+
+
 end

@@ -16,4 +16,26 @@ private
     @user_id
   end
 
+  def self.findtotrade(searchterm)
+    @users = User.all
+    @produces = Produce.all
+    id_array = []
+    @produces.each() do |produce|
+      if produce.trade.include?(searchterm)
+        id_array.push(produce.user_id)
+      end
+    end
+    user_array = []
+    @users.each() do |user|
+      id_array.each do |id|
+        if user.id == id
+          user_array.push(user)
+        end
+      end
+    end
+    binding.pry
+    user_array
+  end
+
+
 end
