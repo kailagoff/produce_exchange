@@ -1,11 +1,10 @@
 class Produce < ActiveRecord::Base
-  belongs_to :user, dependent: :destroy
+  belongs_to :user
   has_many :offers
   validates(:produce_type,  {:presence => true})
   validates(:description, {:presence => true, :length => {maximum: 150}})
   validates(:trade, {:presence => true})
   before_save(:normalize)
-
 
   def add_image(url)
     @image = url

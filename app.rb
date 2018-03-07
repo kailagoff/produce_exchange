@@ -134,7 +134,7 @@ end
 
 #user
 post('/users') do
-  @user = User.create({:name=> params['name'], :password => params['password'], :quadrant => params['quadrant'], :profile => params['profile'], :id => nil})
+  @user = User.create({:name=> params['name'], :email => params['email'], :password => params['password'], :quadrant => params['quadrant'], :profile => params['profile'], :id => nil})
   @users = User.all()
   erb :"account/accounts"
 end
@@ -164,8 +164,7 @@ end
 
 delete('/users/:id') do
   @user = User.find(params.fetch("id").to_i())
-  @user.produces.clear
-  @user.delete()
+  @user.destroy()
   redirect '/users'
 end
 

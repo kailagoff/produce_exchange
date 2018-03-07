@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many(:produces)
+  has_many :produces, dependent: :destroy
   has_and_belongs_to_many(:events)
   validates(:name,  {:uniqueness => true, :presence => true, :length => {maximum: 20}})
   validates(:password, {:presence => true})
