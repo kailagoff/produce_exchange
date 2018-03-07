@@ -15,4 +15,7 @@
       <option value='Southeast'>Southeast</option></select></p>
       <p><button type="submit" class="btn btn-info">Create Account</button></p>
     </form>
+    <% if @error_message != nil %>
+    <%= @error_message %>
+    <% end %>
   </div>

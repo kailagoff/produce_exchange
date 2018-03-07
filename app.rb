@@ -38,8 +38,13 @@ end
 
 post('/account') do #added all of this
   @user = User.create({:name=> params['name'], :password => params['password'], :quadrant => params['quadrant'], :id => nil})
+  if !@user.save()
+    @error_message = "Make sure to include a user name, password, and email. The user name MUST be unique."
+    erb :"account/account_form"
+  else
   session[:id] = @user.id
   erb :"home"
+  end
 end
 
 get '/logout' do
