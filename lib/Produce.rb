@@ -1,5 +1,6 @@
 class Produce < ActiveRecord::Base
-  belongs_to :users, dependent: :destroy
+  belongs_to :user, dependent: :destroy
+  has_many :offers
   validates(:produce_type,  {:presence => true})
   validates(:description, {:presence => true, :length => {maximum: 150}})
   validates(:trade, {:presence => true})

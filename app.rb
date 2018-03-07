@@ -74,11 +74,18 @@ get('/produce/:id') do
   @found_user = User.find(@id)
   @session_id = session[:id]
   @logged_user = User.find(@session_id)
+  @offers = Offer.all
   erb :"produce/produce_info"
 end
 
-post('/produce/:id') do
-  @offer = Offer.create({:trade => params['trade'], :message => params['message'], :user_id => @user_id})
+post('/produce/:id/offer') do
+  @user_id = session[:id]
+  @produce = Produce.find(params.fetch("id").to_i())
+  @offer = Offer.create({:trade_item => params['trade_item'], :description => params['description'], :produce_id => params['produce_id'], :user_id => @user_id})
+  @produce.offers.push(@offer)
+  @offers = Offer.all
+  @id = @produce.user_id.to_i()
+  @found_user = User.find(@id)
   erb :"produce/produce_info"
 end
 

@@ -7,11 +7,13 @@
   </li>
 </ul>
 
-<% if @offer.any?() %>
+<% if @offers != nil %>
   <h2>Current Offers</h2>
   <br>
-  <% @offer.each do |offer| %>
-  <h4>
+  <% @offers.each do |offer| %>
+  <h4><%= @found_user.name %></h4>
+    <li>Trade Item: <%= offer.trade_item %></li>
+    <li>Description: <%= offer.description %></li>
   <% end %>
 <% else %>
 <h4>There are no offers yet!</h4>
@@ -21,11 +23,12 @@
 <% if @session_id != nil %>
   <h4>Hi, <%= @logged_user.name %> would you like to make an offer?</h4>
   <div class="form">
-    <form action="/offer" method="post" class="form-container">
-      <p><label for="trade">What do you have to trade?</label>
-      <input id="trade" name="trade" type="text" class="form-control"></p>
-      <p><label for="message">Tell the grower more about yourself!</label>
-      <input id="message" name="message" type="text" class="form-control"></p>
+    <form action="/produce/<%= @produce.id %>/offer" method="post" class="form-container">
+      <input id="produce_id" name="produce_id" type="hidden" value="<%= @produce.id %>">
+      <p><label for="trade_item">What do you have to trade?</label>
+      <input id="trade_item" name="trade_item" type="text" class="form-control"></p>
+      <p><label for="description">Tell the grower more about yourself!</label>
+      <input id="description" name="description" type="text" class="form-control"></p>
       <p><button type="submit" class="btn btn-info">Email User</button></p>
     </form>
   </div>
