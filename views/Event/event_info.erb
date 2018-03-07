@@ -1,42 +1,29 @@
 <h2>Event Details: <%= @event.title %> </h2>
 
-<ul>
+<h4><%= @event.description %></h4>
+<h4><%= @event.date %></h4>
+<h4><%= @event.quadrant %></h4>
 
-<li><%= @event.description %></li>
-<li><%= @event.date %></li>
-<li><%= @event.quadrant %></li>
+<h4>Current Attendees</h4>
+  <% if @event.users.any? %>
+    <ul>
+      <% @event.users.each do |user| %>
+        <li><%= user.name %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>This event has no attendees yet. Add your name!</p>
+  <% end %>
 
-</ul>
-
-<h4>Current growers who have RSVPed:</h4>
-
-<% if @event.users.any? %>
-  <ul>
-    <% @event.users.each do |user| %>
-      <li><%= user.name %></li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>This event has no attendees yet. Add your name!</p>
-<% end %>
-
-
-<h4>Add people to <%= @event.title %>:</h4>
-<% if @available_users.any? %>
-  <form action="/events/<%= @event.id() %>" method="post">
-    <div class="form-group">
-      <select name="user_id">
-        <% @available_users.each do |user| %>
-          <option value="<%= user.id %>"><%= user.name %></option>
-        <% end %>
-      </select>
-    </div>
-    <button type="submit" class="button btn-success">Add Grower to Event</button>
-  </form>
-
-<% else %>
-  <h4>All growers are assigned to other events.</h4>
-<% end %>
 
 <br>
+<h4>RSVP to this event:</h4>
+
+<form action="/events/<%= @event.id %>" method="post" class="form-container">
+  <p><label for="name">Username:</label>
+  <input id="name" name="name" type="text" class="form-control"></p>
+  <p><button type="submit" class="btn btn-info">RSVP!</button></p>
+</form>
+
+
 <p><a href="/events/<%= @event.id() %>/edit">Edit Event</a></p>

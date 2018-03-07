@@ -52,7 +52,6 @@ post('/produce/available') do
   @user_id = User.findbyname(params.fetch("name"))
   produce = Produce.create({:produce_type=> params['produce_type'], :description => params['description'], :trade => params['trade'], :user_id => @user_id})
   @produce = Produce.all
-
   # session[:id] = @user.id #changed this
   erb :"produce/available"
 end
@@ -154,15 +153,14 @@ end
 
 get('/events/:id') do
   @event = Event.find(params.fetch("id").to_i())
-  @available_users = User.all() - @event.users
   erb :"event/event_info"
 end
 
 post('/events/:id')do
   @event = Event.find(params.fetch("id").to_i())
-  found_user = User.find(params.fetch("user_id").to_i())
+  @user_id = User.findbyname(params.fetch("name"))
+  found_user = User.find(@user_id)
   @event.users.push(found_user)
-  @available_users = User.all() - @event.users
   erb :"event/event_info"
 end
 
@@ -176,7 +174,6 @@ patch('/events/:id') do
   date = params['date']
   @event = Event.find(params.fetch("id").to_i())
   @event.update({:title => title, :date => date})
-  @available_users = User.all() - @event.users
   erb :"event/event_info"
 end
 
