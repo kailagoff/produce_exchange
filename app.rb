@@ -185,7 +185,12 @@ post('/events') do
   description = params['description']
   quadrant = params['quadrant']
   event = Event.create({:title => title, :date => date, :description => description, :quadrant => quadrant, :id => nil})
+  if !event.save()
+    @error_message = "Make sure to include an event title and description. The description MUST be less than 150 characters."
+    erb :"event/event_form"
+  else
   redirect '/events'
+  end
 end
 
 get('/events/:id') do
