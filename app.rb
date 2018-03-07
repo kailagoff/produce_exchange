@@ -16,6 +16,31 @@ get('/') do
   erb :index
 end
 
+get('/login') do #added this
+  erb :"account/login_form"
+end
+
+post('/login') do #this too
+  @user = User.find_by(name: params["name"], password: params["password"])
+  session[:id] = @user.id
+  erb :"home"
+end
+
+get('/createaccount') do
+  erb :"account/account_form"
+end
+
+post('/account') do #added all of this
+  @user = User.create({:name=> params['name'], :password => params['password'], :quadrant => params['quadrant'], :id => nil})
+  session[:id] = @user.id
+  erb :"home"
+end
+
+get '/logout' do
+  session.clear
+  erb :"index"
+end
+
 #produce
 get('/produce') do
   erb :"produce/produce_form"
@@ -26,19 +51,6 @@ get('/available') do
   erb :"produce/available"
 end
 
-get('/createaccount') do
-  erb :"account/account_form"
-end
-
-get('/login') do #added this
-  erb :"account/login_form"
-end
-
-get '/logout' do #added, doesnt work?
-  session.clear
-end
-
-#produce
 get('/produce') do
   erb :"produce/produce_form"
 end
@@ -60,6 +72,13 @@ get('/produce/:id') do
   @produce = Produce.find(params.fetch("id").to_i())
   @id = @produce.user_id.to_i()
   @found_user = User.find(@id)
+  @session_id = session[:id]
+  @logged_user = User.find(@session_id)
+  erb :"produce/produce_info"
+end
+
+post('/produce/:id') do
+  @offer = Offer.create({:trade => params['trade'], :message => params['message'], :user_id => @user_id})
   erb :"produce/produce_info"
 end
 
@@ -85,18 +104,6 @@ delete('/produce/:id') do
 end
 
 #user
-post('/account_success') do #added all of this
-  @user = User.create({:name=> params['name'], :password => params['password'], :quadrant => params['quadrant'], :id => nil})
-  # session[:id] = @user.id
-  erb :"/account/account_success"
-end
-
-post('/login_success') do #this too
-  @user = User.find_by(name: params["name"], password: params["password"])
-  # session[:id] = @user.id
-  erb :"account/login_success" #and a file, in accounts, two files
-end
-
 post('/users') do
   @user = User.create({:name=> params['name'], :password => params['password'], :quadrant => params['quadrant'], :profile => params['profile'], :id => nil})
   @users = User.all()
