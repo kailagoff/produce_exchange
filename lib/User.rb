@@ -1,9 +1,10 @@
 class User < ActiveRecord::Base
   has_many :produces, dependent: :destroy
-  has_and_belongs_to_many(:events)
+  has_and_belongs_to_many :events, dependent: :destroy
   validates(:name,  {:uniqueness => true, :presence => true, :length => {maximum: 20}})
   validates(:password, {:presence => true})
-
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true, :uniqueness => true, format: { with: VALID_EMAIL_REGEX }
 
 private
   def self.findbyname(searchname)
@@ -33,7 +34,6 @@ private
         end
       end
     end
-    binding.pry
     user_array
   end
 

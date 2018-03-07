@@ -146,7 +146,6 @@ end
 
 get('/users/:id') do
   @user = User.find(params.fetch("id").to_i())
-  @produce = Produce.find(params.fetch("id").to_i())
   erb :"account/account_info"
 end
 

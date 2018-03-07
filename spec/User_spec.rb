@@ -28,6 +28,22 @@ describe('User') do
     expect(user2.save()).to(eq(false))
   end
 
+  it("validates presence of User email") do
+    user = User.new({:name => "Emily", :password => "sefafa", :email => ""})
+    expect(user.save()).to(eq(false))
+  end
+
+  it("tests for email uniqueness") do
+    user = User.create({:name => "Emily", :password => "sefafa", :email => "Emily@gmail.com"})
+    user2 = User.new({:name => "Sara", :password => "asfewf", :email => "Emily@gmail.com"})
+    expect(user2.save()).to(eq(false))
+  end
+
+  it("tests for email regex") do
+    user = User.create({:name => "Emily", :password => "sefafa", :email => "Emily@@gmail.com"})
+    expect(user.save()).to(eq(false))
+  end
+  
   describe(".findtotrade") do
     it("find growers who want to trade for certain produce.") do
       user1 = User.create({:name => "Emily", :password => "sefafa", :id => 234})
