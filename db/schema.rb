@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20180307181325) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.binary "image"
   end
 
   create_table "produces_users", id: false, force: :cascade do |t|
