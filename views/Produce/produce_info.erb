@@ -1,10 +1,10 @@
 <h2>Produce Details: <%= @produce.produce_type %> </h2>
 
 <ul>
+  <li>Image: <img src="<%= @produce.image %>" width="200" height ="200"></li>
   <li>Description: <%= @produce.description %></li>
   <li>Looking to trade for: <%= @produce.trade %></li>
   <li>Grower: <%= @found_user.name %></li>
-  </li>
 </ul>
 
 <% if @offers != nil %>

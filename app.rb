@@ -62,9 +62,13 @@ end
 
 post('/produce/available') do
   @user_id = User.findbyname(params.fetch("name"))
-  produce = Produce.create({:produce_type=> params['produce_type'], :description => params['description'], :trade => params['trade'], :user_id => @user_id})
+  produce = Produce.create({:produce_type=> params['produce_type'], :description => params['description'], :trade => params['trade'], :user_id => @user_id, :image => params['image']})
   @produce = Produce.all
   # session[:id] = @user.id #changed this
+  if params[:image] != nil
+    url = params[:image]
+    @produce.add_image(url)
+  end
   erb :"produce/available"
 end
 
@@ -197,3 +201,5 @@ delete('/events/:id') do
   @events = Event.all()
   redirect '/events'
 end
+
+## instagram api
