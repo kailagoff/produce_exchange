@@ -8,3 +8,6 @@
       <p><button type="submit" class="btn btn-info">Login</button></p>
     </form>
   </div>
+  <% if @error_message != nil %>
+    <%= @error_message %>
+  <% end %>

@@ -23,8 +23,13 @@ end
 
 post('/login') do #this too
   @user = User.find_by(name: params["name"], password: params["password"])
+    if @user == nil
+      @error_message = "That user name does not match any current user names. Please try again."
+      erb :"account/login_form"
+    else
   session[:id] = @user.id
   erb :"home"
+  end
 end
 
 get('/createaccount') do
