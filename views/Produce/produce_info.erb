@@ -1,13 +1,11 @@
 <h2>Produce Details: <%= @produce.produce_type %> </h2>
-
 <ul>
   <li><img src="<%= @produce.image %>" width="200" height ="200"></li>
   <li>Description: <%= @produce.description %></li>
   <li>Looking to trade for: <%= @produce.trade %></li>
   <li>Grower: <%= @found_user.name %></li>
 </ul>
-
-<% if @offers != nil %>
+<% if @offers.any?() %>
   <h2>Current Offers</h2>
   <br>
   <% @offers.each do |offer| %>
@@ -18,7 +16,6 @@
 <% else %>
 <h4>There are no offers yet!</h4>
 <% end %>
-
 <br>
 <% if @session_id != nil %>
   <h4>Hi, <%= @logged_user.name %> would you like to make an offer?</h4>
