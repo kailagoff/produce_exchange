@@ -39,7 +39,7 @@ end
 post('/account') do #added all of this
   @user = User.create({:name=> params['name'], :password => params['password'], :quadrant => params['quadrant'], :id => nil})
   if !@user.save()
-    @error_message = "Make sure to include a user name, password, and email. The user name MUST be unique."
+    @error_message = "Make sure to include a user name, password, and email. The user name MUST be unique and less than 20 characters."
     erb :"account/account_form"
   else
   session[:id] = @user.id
@@ -72,16 +72,22 @@ get('/produce/available') do
   erb :"produce/available"
 end
 
-post('/produce/available') do
+post('/produce') do
   @user_id = User.findbyname(params.fetch("name"))
   produce = Produce.create({:produce_type=> params['produce_type'], :description => params['description'], :trade => params['trade'], :user_id => @user_id, :image => params['image']})
+  if !produce.save()
+    @error_message = "Make sure to include a produce type, description, and what you want to trade. The description MUST be less than 150 characters."
+    @produce = Produce.all
+    erb :"produce/produce_form"
+  else
   @produce = Produce.all
   # session[:id] = @user.id #changed this
-  if params[:image] != nil
-    url = params[:image]
-    produce.add_image(url)
+    if params[:image] != nil
+      url = params[:image]
+      produce.add_image(url)
+    end
+    erb :"produce/available"
   end
-  erb :"produce/available"
 end
 
 get('/produce/:id') do
