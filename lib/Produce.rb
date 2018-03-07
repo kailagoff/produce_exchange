@@ -5,6 +5,11 @@ class Produce < ActiveRecord::Base
   validates(:trade, {:presence => true})
   before_save(:normalize)
 
+
+  def add_image(url)
+    @image = url
+  end
+  
   private
   def normalize
     self.produce_type = produce_type.downcase.titleize
@@ -20,6 +25,5 @@ class Produce < ActiveRecord::Base
     end
     results_array
   end
-
 
 end

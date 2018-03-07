@@ -1,6 +1,6 @@
 <h3>Add produce you want to trade:</h3>
 <div class="form">
-  <form action="/produce/available" method="post" class="form-container">
+  <form action="/produce/available" method="post" class="form-container" enctype="multipart/form-data">
     <p><label for="name">Username</label>
     <input id="name" name="name" type="text" class="form-control"></p>
     <p><label for="produce_type">Produce Type</label>
@@ -9,6 +9,9 @@
     <textarea id="description" name="description" type="text" class="form-control"></textarea></p>
     <p><label for="trade">What are you looking to trade for:</label>
     <textarea id="trade" name="trade" type="text" class="form-control"></textarea></p>
+    <br>
+    <p><label for="image">Upload an Image:</label>
+     <input class="longer-input" type="text" name="image"></p>
     <p><button type="submit" class="btn btn-info">Post Produce</button></p>
   </form>
 </div>

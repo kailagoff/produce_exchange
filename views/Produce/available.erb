@@ -2,10 +2,12 @@
   <h2>Current Listings</h2>
   <hr>
   <% @produce.each do |produce| %>
-  <h4><a href="/produce/<%= produce.id()%>"><%= produce.produce_type %></a></h4>
+  <h4><img src="<%= produce.image() %>"><a href="/produce/<%= produce.id()%>"><%= produce.produce_type %></a></h4>
   <% end %>
 <% else %>
   <h4>There are no listings yet!</h4>
 <% end %>
+
+
 
 <p><a href="/produce">Add a Produce Listing</a></p>
