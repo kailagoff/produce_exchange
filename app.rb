@@ -46,11 +46,6 @@ get('/produce') do
   erb :"produce/produce_form"
 end
 
-get('/available') do
-  @produce = Produce.all
-  erb :"produce/available"
-end
-
 get('/produce') do
   erb :"produce/produce_form"
 end
@@ -69,12 +64,12 @@ post('/produce/available') do
 end
 
 get('/produce/:id') do
+  @offers = Offer.all
   @produce = Produce.find(params.fetch("id").to_i())
   @id = @produce.user_id.to_i()
   @found_user = User.find(@id)
   @session_id = session[:id]
   @logged_user = User.find(@session_id)
-  @offers = Offer.all
   erb :"produce/produce_info"
 end
 
