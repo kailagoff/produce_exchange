@@ -7,7 +7,7 @@
 
 body {
   background-color: white;
-  font-family: 'Julius Sans One', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 ul {
@@ -18,6 +18,12 @@ h2 {
   font-family: 'Julius Sans One', sans-serif;
 	font-size: 35px;
   letter-spacing: 2px;
+  color: #094512;
+}
+
+h4 {
+  font-family: 'Julius Sans One', sans-serif;
+	font-size: 20px;
   color: #094512;
 }
 
@@ -57,10 +63,6 @@ button:hover{
 
 .header a {
   text-decoration: none;
-}
-
-.accounts img {
-  height: 200px;
 }
 
 #nav {
@@ -108,6 +110,11 @@ button:hover{
 
 #login {
   align: left
+  text-align: left;
+}
+
+#produceinfo {
+  align: left;
   text-align: left;
 }
 
