@@ -41,13 +41,13 @@ describe('User') do
 
   describe(".findtotrade") do
     it("find growers who want to trade for certain produce.") do
-      user1 = User.create({:name => "Emily", :password => "sefafa", :id => 234})
+      user1 = User.create({:name => "Emily", :password => "sefafa", :id => 234, :email => "eoier@soierse.com"})
       produce1 = Produce.create({:produce_type => "kale", :description => "a".*(10), :trade => "blueberries", :user_id => 234})
       produce2 = Produce.create({:produce_type => "grape", :description => "a".*(10), :trade => "strawberries", :user_id => 234})
-      user2 = User.create({:name => "Jon", :password => "asdas", :id => 456})
+      user2 = User.create({:name => "Jon", :password => "asdas", :id => 456, :email => "eoier@sse.com"})
       produce3 = Produce.create({:produce_type => "pumpkins", :description => "a".*(10), :trade => "lettuce", :user_id => 456})
       produce4 = Produce.create({:produce_type => "hops", :description => "a".*(10), :trade => "strawberries", :user_id => 456})
-      user3 = User.create({:name => "Ralph", :password => "grae", :id => 123})
+      user3 = User.create({:name => "Ralph", :password => "grae", :id => 123, :email => "eoier@soieraweafdse.com"})
       produce5 = Produce.create({:produce_type => "corn", :description => "a".*(10), :trade => "tomatoes", :user_id => 123})
       expect(User.findtotrade("strawberries")).to(eq([user1, user2]))
     end
