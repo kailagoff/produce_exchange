@@ -7,8 +7,6 @@
 <kbd><img src="public/img/screenshot1.jpg" alt=""></kbd>
 <kbd><img src="public/img/screenshot2.jpg" alt=""></kbd>
 
-
-
 ## Description
 
 _Planted tomatoes in the spring, and now you have an abundance of them after harvest and you're not sure what to do with them? This app will help fix that dilemma!_
