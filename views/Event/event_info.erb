@@ -21,8 +21,7 @@
 <h4>RSVP to this event:</h4>
 
 <form action="/events/<%= @event.id %>" method="post" class="form-container">
-  <p><label for="name">Enter Username:</label>
-  <input id="name" name="name" type="text" class="form-control"></p>
+  <input id="user_id" name="user_id" type="hidden" value="<%= @session_id %>">
   <p><button type="submit">RSVP!</button></p>
 </form>
 

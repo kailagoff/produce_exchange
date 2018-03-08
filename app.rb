@@ -13,9 +13,9 @@ require("pry")
 enable :sessions
 
 get('/') do
-  @id = session[:id]
-  if @id != nil
-    @user = User.find(@id)
+  @session_id = session[:id]
+  if @session_id != nil
+    @user = User.find(@session_id)
   end
   erb :index
 end
@@ -31,7 +31,7 @@ post('/login') do #this too
       erb :"account/login_form"
     else
   session[:id] = @user.id
-  @id = session[:id]
+  @session_id = session[:id]
   erb :index
   end
 end
@@ -47,7 +47,7 @@ post('/account') do #added all of this
     erb :"account/account_form"
   else
   session[:id] = @user.id
-  @id = session[:id]
+  @session_id = session[:id]
   erb :index
   end
 end
@@ -65,11 +65,13 @@ post('/search')do
 end
 
 get('/produce') do
+  @session_id = session[:id]
   @user_id = session[:id]
   erb :"produce/produce_form"
 end
 
 post('/produce') do
+  @session_id = session[:id]
   @user_id = session[:id]
   produce = Produce.create({:produce_type=> params['produce_type'], :description => params['description'], :trade => params['trade'], :user_id => @user_id, :image => params['image']})
   if !produce.save()
@@ -87,6 +89,7 @@ post('/produce') do
 end
 
 get('/produce/available') do
+  @session_id = session[:id]
   @produce = Produce.all
   erb :"produce/available"
 end
@@ -133,11 +136,13 @@ post('/produce/:id/offer') do
 end
 
 get('/produce/:id/edit') do
+  @session_id = session[:id]
   @produce = Produce.find(params.fetch("id").to_i())
   erb :"produce/edit_produce"
 end
 
 patch('/produce/:id') do
+  @session_id = session[:id]
   produce_type = params['produce_type']
   description = params['description']
   trade = params['trade']
@@ -163,16 +168,19 @@ post('/users') do
 end
 
 get('/users') do
+  @session_id = session[:id]
   @users = User.all()
   erb :"account/accounts"
 end
 
 get('/users/:id') do
+  @session_id = session[:id]
   @user = User.find(params.fetch("id").to_i())
   erb :"account/account_info"
 end
 
 get('/users/:id/edit') do
+  @session_id = session[:id]
   @user = User.find(params.fetch("id").to_i())
   erb :"account/edit_account"
 end
@@ -192,10 +200,12 @@ end
 
 #event
 get('/events/new') do
+  @session_id = session[:id]
   erb :"event/event_form"
 end
 
 get('/events') do
+  @session_id = session[:id]
   @events = Event.all()
   erb :"event/events"
 end
@@ -215,19 +225,21 @@ post('/events') do
 end
 
 get('/events/:id') do
+  @session_id = session[:id]
   @event = Event.find(params.fetch("id").to_i())
   erb :"event/event_info"
 end
 
 post('/events/:id')do
+  @session_id = session[:id]
   @event = Event.find(params.fetch("id").to_i())
-  @user_id = User.findbyname(params.fetch("name"))
-  found_user = User.find(@user_id)
+  found_user = User.find(@session_id)
   @event.users.push(found_user)
   erb :"event/event_info"
 end
 
 get('/events/:id/edit') do
+  @session_id = session[:id]
   @event = Event.find(params.fetch("id").to_i())
   erb :"event/edit_event"
 end
