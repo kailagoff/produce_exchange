@@ -17,6 +17,19 @@
       </div>
     </div>
   <% else %>
+  <div class="login-container">
+    <div class="login">
+      <form action="/login" method="post">
+        <h1>LOGIN TO GET STARTED</h1>
+        <label for="name">USERNAME</label>
+        <input id="username" name="name" type="text">
+        <label for="password">PASSWORD</label>
+        <input id="password" name="password" placeholder="password" type="password">
+        <br><br><button id="login-button" type="submit" class="btn">LOGIN</button>
+        <h6><a href="/createaccount">CREATE A NEW ACCOUNT</a></h6>
+      </form>
+    </div>
+  <!-- </div>
     <div class="accounts">
       <div class="row">
         <div class="col-md-2">
@@ -32,5 +45,5 @@
         </div>
         </div>
       </div>
-    </div>
+    </div> -->
 <% end %>
