@@ -40,37 +40,80 @@
               // new map
               var map = new google.maps.Map(document.getElementById('map'), options);
               // North Portland(Johns, Portsmouth)
-              addMarker({lat:45.5863,lng:-122.75502});
-              addMarker({lat:45.5853,lng:-122.7719426});
-              // Northwest(Adams)
-              addMarker({lat:45.52687,lng:-122.726793});
-              // Southeast(Brentwood, Earl Boyles, Lents, Peace)
-              addMarker({lat:45.4735,lng:-122.604});
-              addMarker({lat:45.4748,lng:-122.5489});
-              addMarker({lat:45.516018,lng:-122.681425});
-              addMarker({lat:45.511617,lng:-122.532094});
-              // Northeast(Cully, Everett, Hazelwood, Woodlawn)
-              addMarker({lat:45.562806,lng:-122.620408});
-              addMarker({lat:45.516018,lng:-122.681425});
-              addMarker({lat:45.516018,lng:-122.681425});
-              addMarker({lat:45.568261,lng:-122.653972});
-              // Southwest(Front and Curry, Water and Gibbs)
-              addMarker({lat:45.4978,lng:-122.6782});
-              addMarker({lat:45.511617,lng:-122.532094});
-              function addMarker(coords) {
-                var marker = new google.maps.Marker({
-                  position: coords,
-                  map: map
-                  // icon:'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
-                })
-              };
-              var infoWindow = new google.maps.InfoWindow({
-                content: '<h3> Community Garden </h3>'
+              addMarker({
+                coords:{lat:45.5863,lng:-122.75502},
+                content:'<h6>St Johns Community Garden</h6>'
               });
+              addMarker({
+                coords:{lat:45.5853,lng:-122.7719426},
+                content:'<h6>Portsmouth Community Garden</h6>'
+              });
+              // Northwest(Adams)
+              addMarker({
+                coords:{lat:45.52687,lng:-122.726793},
+                content:'<h6>Adams Community Garden</h6>'
+              });
+              // Southeast(Brentwood, Earl Boyles, Lents, Peace)
+              addMarker({
+                coords:{lat:45.4735,lng:-122.604},
+                content:'<h6>Brentwood Community Garden</h6>'
+              });
+              addMarker({
+                coords:{lat:45.4748,lng:-122.5489},
+                content:'<h6>Earl Boyles Community Garden</h6>'
+              });
+              addMarker({
+                coords:{lat:45.516018,lng:-122.681425},
+                content:'<h6>Lents Community Garden</h6>'
+              });
+              addMarker({
+                coords:{lat:45.511617,lng:-122.532094},
+                content:'<h6>Peace Community Garden</h6>'
+              });
+              // Northeast(Cully, Everett, Hazelwood, Woodlawn)
+              addMarker({
+                coords:{lat:45.562806,lng:-122.620408},
+                content:'<h6>Cully Community Garden</h6>'
+              });
+              addMarker({
+                coords:{lat:45.516018,lng:-122.681425},
+                content:'<h6>Everett Community Garden</h6>'
+              });
+              addMarker({
+                coords:{lat:45.516018,lng:-122.681425},
+                content:'<h6>Hazelwood Community Garden</h6>'
+              });
+              addMarker({
+                coords:{lat:45.568261,lng:-122.653972},
+                content:'<h6>Woodlawn Community Garden</h6>'
+              });
+              // Southwest(Front and Curry, Water and Gibbs)
+              addMarker({
+                coords:{lat:45.4978,lng:-122.6782},
+                content:'<h6>Front and Curry Community Garden</h6>'
+              });
+              addMarker({
+                coords:{lat:45.511617,lng:-122.532094},
+                content:'<h6>Water and Gibbs Community Garden</h6>'
+              });
+              function addMarker(props) {
+                var marker = new google.maps.Marker({
+                  position:props.coords,
+                  map: map
+                });
+
+              if(props.content){
+              var infoWindow = new google.maps.InfoWindow({
+                content: props.content
+              });
+
               marker.addListener('click', function(){
                 infoWindow.open(map, marker);
               });
-              }
+            };
+          };
+        };
+
             </script>
             <script async defer
               src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcVGrwkLoI-DY42RWuGn8FKkUWv_ErYs8&callback=initMap">
@@ -87,6 +130,6 @@
 <% else %>
   <h4>There are no events yet!</h4>
   <br>
-  <h4><em>Add an Event:</em></h4>
+  <h4><em>Add an Event:</em</h4>
   <a href="/events/new"><img src="../img/events.png" alt="Add an event"></a>
 <% end %>

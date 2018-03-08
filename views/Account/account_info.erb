@@ -2,7 +2,7 @@
   <p><u>Bio</u>: <%= @user.profile %></p>
   <p><u>Neighborhood</u>: <%= @user.quadrant %></p>
 <br>
-<h4><%= @user.name %> is looking to trade:</h4>
+<h4><%= @user.name %> has this produce to trade:</h4>
 
 <% if @user.produces().any?() %>
   <% @user.produces().each() do |produce| %>
