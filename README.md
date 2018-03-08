@@ -4,7 +4,6 @@
 
 #### _An application where users can add extra produce to a neighborhood forum in order to exchange it for another kind of produce. 3-8-18_
 
-<kbd><img src="public/img/screenshot1.jpg" alt=""></kbd>
 <kbd><img src="public/img/screenshot2.jpg" alt=""></kbd>
 
 ## Description
