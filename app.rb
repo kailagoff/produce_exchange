@@ -12,8 +12,11 @@ require("pry")
 
 enable :sessions
 
-#home/login
 get('/') do
+  @id = session[:id]
+  if @id != nil
+    @user = User.find(@id)
+  end
   erb :index
 end
 
@@ -28,7 +31,7 @@ post('/login') do #this too
       erb :"account/login_form"
     else
   session[:id] = @user.id
-  erb :"home"
+  erb :index
   end
 end
 
@@ -43,13 +46,13 @@ post('/account') do #added all of this
     erb :"account/account_form"
   else
   session[:id] = @user.id
-  erb :"home"
+  erb :index
   end
 end
 
 get '/logout' do
   session.clear
-  erb :"index"
+  erb :index
 end
 
 #produce
