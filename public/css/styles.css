@@ -15,7 +15,7 @@ p {
 
 .jumbotron {
     background-image: url('https://images.unsplash.com/photo-1485637701894-09ad422f6de6?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=43432c56137d60cc6e8448fe36a43df9&auto=format&fit=crop&w=1320&q=80');
-    height: 400px;
+    height: 300px;
     background-position: 0% 25%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -26,9 +26,12 @@ p {
 .header h1 {
   font-family: 'Julius Sans One', sans-serif;
 	font-size: 50px;
+  letter-spacing: 5px;
+  text-align: center;
 }
 
 #nav {
+  align-self: center;
 	text-align: center;
 	background-color: white;
 }
@@ -36,11 +39,10 @@ p {
 #nav ul {
 	list-style: none;
 	text-align: center;
-	width: 100%;
-	margin-right: auto;
-	margin-left: auto;
-	font-family: sans-serif;
-	font-size: 12px;
+	width: 500%;
+  font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
+  padding-left: 200px;
 }
 
 #nav ul li {
@@ -59,15 +61,12 @@ p {
 }
 
 
-#thin {
+#dark {
 	color: #094512;
-  letter-spacing: 5px;
 }
 
-#thick {
-  padding-left: 25px;
+#light {
 	color: #b2d2b7;
-  letter-spacing: 25px;
 }
 
 #header {
@@ -77,7 +76,14 @@ p {
 	background-color: white;
 }
 
+.accounts {
+  align: center;
+  text-align: center;
+}
 
+.accounts img {
+  width: 18%;
+}
 
 
 /*
