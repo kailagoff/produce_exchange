@@ -42,7 +42,7 @@ button:hover{
 
 .jumbotron {
     background-image: url('https://images.unsplash.com/photo-1485637701894-09ad422f6de6?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=43432c56137d60cc6e8448fe36a43df9&auto=format&fit=crop&w=1320&q=80');
-    height: 300px;
+    height: 400px;
     background-position: 0% 25%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -127,13 +127,13 @@ button:hover{
   font-family: 'Open Sans', sans-serif;
   color: #444;
   -webkit-font-smoothing: antialiased;
-  background: hsla(0, 10%, 90%, 0.8);
+  background: hsla(0, 0%, 90%, 0.5);
   border: 2px solid #42464b;
   border-radius: 12px;
   position: fixed;
   width: 340px;
   height: 300px;
-  top: 60%;
+  top: 30%;
   left: 50%;
   margin-top: -140px;
   margin-left: -170px;
