@@ -4,6 +4,11 @@
 
 #### _An application where users can add extra produce to a neighborhood forum in order to exchange it for another kind of produce. 3-8-18_
 
+<kbd><img src="public/img/screenshot1.png" alt=""></kbd>
+<kbd><img src="public/img/screenshot2.png" alt=""></kbd>
+
+
+
 ## Description
 
 _Planted tomatoes in the spring, and now you have an abundance of them after harvest and you're not sure what to do with them? This app will help fix that dilemma!_
