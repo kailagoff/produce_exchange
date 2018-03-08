@@ -28,6 +28,9 @@
       <input id="description" name="description" type="text" class="form-control"></p>
       <p><button type="submit" class="btn btn-info">Email User</button></p>
     </form>
+    <% if @error_message != nil %>
+      <%= @error_message %>
+    <% end %>
   </div>
 
   <% else %>

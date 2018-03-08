@@ -104,11 +104,21 @@ post('/produce/:id/offer') do
   @user_id = session[:id]
   @produce = Produce.find(params.fetch("id").to_i())
   @offer = Offer.create({:trade_item => params['trade_item'], :description => params['description'], :produce_id => params['produce_id'], :user_id => @user_id})
-  @produce.offers.push(@offer)
-  @offers = Offer.all
-  @id = @produce.user_id.to_i()
-  @found_user = User.find(@id)
-  erb :"produce/produce_info"
+  if !@offer.save()
+    @error_message = "Make sure to include an item to trade, and a description."
+    @offers = Offer.all
+    @id = @produce.user_id.to_i()
+    @found_user = User.find(@id)
+    @session_id = session[:id]
+    @logged_user = User.find(@session_id)
+    erb :"produce/produce_info"
+  else
+    @produce.offers.push(@offer)
+    @offers = Offer.all
+    @id = @produce.user_id.to_i()
+    @found_user = User.find(@id)
+    erb :"produce/produce_info"
+  end
 end
 
 get('/produce/:id/edit') do
