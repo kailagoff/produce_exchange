@@ -1,16 +1,23 @@
 <% if @produce.any?() %>
-  <h2>Available Produce</h2>
-  <hr>
-  <form action="/search" method="post" class="form-container">
-    <p><label for="produce_type">Search Produce</label>
-    <input id="produce_type" name="produce_type" type="text" class="form-control"></p>
-    <p><button type="submit">Search</button></p>
-    <hr>
-  </form>
-  <% @produce.each do |produce| %>
-  <h4><img src="<%= produce.image() %>" width="50" height ="50"><a href="/produce/<%= produce.id()%>">  <%= produce.produce_type %></a></h4>
-  <% end %>
+  <div class="row">
+    <div class="col-md-7">
+      <h2>Available Produce</h2>
+      <% @produce.each do |produce| %>
+      <h4><img src="<%= produce.image() %>" width="50" height ="50"><a href="/produce/<%= produce.id()%>">  <%= produce.produce_type %></a></h4>
+      <% end %>
+    </div>
+    <div class="col-md-5">
+      <h2>Find Produce</h2>
+      <form action="/search" method="post" class="form-container">
+        <p><label for="produce_type">Search Produce</label>
+        <input id="produce_type" name="produce_type" type="text" class="form-control"></p>
+        <p><button type="submit">Search</button></p>
+      </form>
+      <hr>
+      <p><a href="/produce"><img src="../img/postproduce.png" alt="Post produce"></a></p>
+    </div>
+  </div>
 <% else %>
   <h4>There are no listings yet!</h4>
+  <p><img src="../img/postproduce.png" alt="Post produce"></p>
 <% end %>
-<p><a href="/produce">Add a Produce Listing</a></p>
