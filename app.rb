@@ -93,6 +93,7 @@ end
 
 get('/produce/:id') do
   @produce = Produce.find(params.fetch("id").to_i())
+  @produce_owner_id = @produce.user_id
   @offers = @produce.offers
   @id = @produce.user_id.to_i()
   @found_user = User.find(@id)
@@ -110,6 +111,7 @@ post('/produce/:id/offer') do
   @produce = Produce.find(params.fetch("id").to_i())
   @session_id = session[:id]
   @logged_user = User.find(@session_id)
+  @produce_owner_id = @produce.user_id
   @offer = Offer.create({:trade_item => params['trade_item'], :description => params['description'], :produce_id => params['produce_id'], :user_name => params['user_name'], :user_id => @user_id})
   if !@offer.save()
     @error_message = "Make sure to include an item to trade, and a description."
@@ -118,6 +120,7 @@ post('/produce/:id/offer') do
     @found_user = User.find(@id)
     @session_id = session[:id]
     @logged_user = User.find(@session_id)
+    @produce_owner_id = @produce.user_id
     erb :"produce/produce_info"
   else
     @user_id = session[:id]

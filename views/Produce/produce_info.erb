@@ -17,7 +17,7 @@
 <h4>There are no offers yet!</h4>
 <% end %>
 <br>
-<% if @session_id != nil %>
+<% if @session_id != @produce_owner_id %>
   <h4>Hi, <%= @logged_user.name %> would you like to make an offer?</h4>
   <div class="form">
     <form action="/produce/<%= @produce.id %>/offer" method="post" class="form-container">
@@ -34,10 +34,11 @@
     <% end %>
   </div>
 
-  <% else %>
-  <h3><a href="/login">Log in</a> or <a href="/createaccount">create account</a>.</h3>
-<% end %>
+  <% elsif @session_id == nil %>
+  <h3>Please<a href="/login">log in</a> or <a href="/createaccount">create account</a> to make an offer.</h3>
 
-<br>
-<p><a href="/produce/<%= @produce.id() %>/edit">Edit Produce Details</a></p>
-<p><a href="/produce">Add Another Piece of Produce</a></p>
+  <% elsif @session_id == @logged_user.id %>
+  <br>
+  <p><a href="/produce/<%= @produce.id() %>/edit">Edit Produce Details</a></p>
+  <p><a href="/produce">Add Another Piece of Produce</a></p>
+<% end %>
