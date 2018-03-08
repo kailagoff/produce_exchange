@@ -1,8 +1,7 @@
+<% if @user_id != nil %>
 <h3>Add produce you want to trade:</h3>
 <div class="form">
   <form action="/produce" method="post" class="form-container" enctype="multipart/form-data">
-    <p><label for="name">Username</label>
-    <input id="name" name="name" type="text" class="form-control"></p>
     <p><label for="produce_type">Produce Type</label>
     <input id="produce_type" name="produce_type" type="text" class="form-control"></p>
     <p><label for="description">Describe your Produce:</label>
@@ -18,3 +17,10 @@
     <%= @error_message %>
   <% end %>
 </div>
+<% else %>
+<h3>Please create an account or login first!</h3>
+<a href="/createaccount">Create a new account</a>
+<br>
+<a href="/login">Log in</a>
+<br>
+<% end %>
