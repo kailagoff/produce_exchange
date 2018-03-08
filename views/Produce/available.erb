@@ -1,7 +1,7 @@
+<h2>Available Produce</h2>
 <% if @produce.any?() %>
   <div class="row">
     <div class="col-md-7">
-      <h2>Available Produce</h2>
       <% @produce.each do |produce| %>
       <h4><img src="<%= produce.image() %>" width="50" height ="50"><a href="/produce/<%= produce.id()%>">  <%= produce.produce_type %></a></h4>
       <% end %>
@@ -18,6 +18,8 @@
     </div>
   </div>
 <% else %>
-  <h4>There are no listings yet!</h4>
-  <p><img src="../img/postproduce.png" alt="Post produce"></p>
+  <h4>There is no available produce yet!</h4>
+  <hr>
+  <h4><em>Add a Produce Listing:</em></h4>
+  <a href="/produce"><img src="../img/postproduce.png" alt="Post produce"></p>
 <% end %>

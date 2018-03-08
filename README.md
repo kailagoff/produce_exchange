@@ -25,15 +25,15 @@ _Produce Exchange allows users to add leftover produce from their garden to a fo
 
 * _Enter into the terminal:_ ``` $postgres```
 
-* _In the following line, enter:_ ```$db:create```
+* _In the following line, enter:_ ```$rake db:create```
 
-* _In the following line, enter:_ ```$db:migrate```
+* _In the following line, enter:_ ```$rake db:migrate```
 
 ## Setup/Installation Requirements
 
   * _Enter in the terminal:_ ``` $ruby app.rb```
 
-  * _Using a web browser, type in the url_ ``` localhost:4567 ```
+  * _Using a web browser, type in the url:_ ``` localhost:4567 ```
 
 ## Known Bugs
 
@@ -55,4 +55,4 @@ _Produce Exchange allows users to add leftover produce from their garden to a fo
 
   *MIT License*
 
-Copyright (c) 2018 **_Maggie Summers, Kaila Goff, Anna Marie Cooper, Bryce Frazier**
+Copyright (c) 2018 **Maggie Summers, Kaila Goff, Anna Marie Cooper, Bryce Frazier**

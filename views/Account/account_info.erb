@@ -1,6 +1,10 @@
 <h2>Meet <%= @user.name %>!</h2>
-<h3><%= @user.profile %></h3>
-<h3><%= @user.name %> is looking to trade:</h3>
+<ul>
+  <li><u>Bio</u>: <%= @user.profile %></li>
+  <li><u>Neighborhood</u>: <%= @user.quadrant %></li>
+</ul>
+<br>
+<h4><%= @user.name %> is looking to trade:</h4>
 
 <% if @user.produces().any?() %>
   <ul>

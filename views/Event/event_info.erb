@@ -1,10 +1,11 @@
 <h2>Event Details: <%= @event.title %> </h2>
 
-<h4><%= @event.description %></h4>
-<h4><%= @event.date %></h4>
-<h4><%= @event.quadrant %></h4>
+<h4><u>Description</u>: <%= @event.description %></h4>
+<h4><u>Date</u>: <%= @event.date %></h4>
+<h4><u>Neighborhood</u>: <%= @event.quadrant %></h4>
 
-<h4>Current Attendees</h4>
+<br>
+<h4><u>Current Attendees:</u></h4>
   <% if @event.users.any? %>
     <ul>
       <% @event.users.each do |user| %>
@@ -12,7 +13,7 @@
       <% end %>
     </ul>
   <% else %>
-    <p>This event has no attendees yet. Add your name!</p>
+    <p>This event has no attendees yet. Add your name below!</p>
   <% end %>
 
 
@@ -20,10 +21,10 @@
 <h4>RSVP to this event:</h4>
 
 <form action="/events/<%= @event.id %>" method="post" class="form-container">
-  <p><label for="name">Username:</label>
+  <p><label for="name">Enter Username:</label>
   <input id="name" name="name" type="text" class="form-control"></p>
   <p><button type="submit">RSVP!</button></p>
 </form>
 
-
+<br>
 <p><a href="/events/<%= @event.id() %>/edit">Edit Event</a></p>

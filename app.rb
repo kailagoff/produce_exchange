@@ -41,7 +41,7 @@ get('/createaccount') do
 end
 
 post('/account') do #added all of this
-  @user = User.create({:name=> params['name'], :password => params['password'], :email => params["email"], :quadrant => params['quadrant'], :id => nil})
+  @user = User.create({:name=> params['name'], :profile => params['profile'], :password => params['password'], :email => params["email"], :quadrant => params['quadrant'], :id => nil})
   if !@user.save()
     @error_message = "Make sure to include a user name, password, and email. The user name MUST be unique and less than 20 characters."
     erb :"account/account_form"
