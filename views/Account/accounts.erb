@@ -2,7 +2,7 @@
 <hr>
 <% if @users.any?() %>
     <% @users.each do |user| %>
-    <h4><a href="/users/<%= user.id() %>"><%= user.name() %></a></h4>
+    <h3><a href="/users/<%= user.id() %>"><%= user.name() %></a></h3>
     <% end %>
 <% else %>
   <h4>There are no growers yet!</h4>

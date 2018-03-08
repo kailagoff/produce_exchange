@@ -2,19 +2,15 @@
   <div class="row">
     <div class="col-md-6">
       <h2><%= @produce.produce_type %> </h2>
-      <p>
-      <ul>
-        <li><img src="<%= @produce.image %>" width="200" height ="200"></li>
+        <img src="<%= @produce.image %>" width="200" height ="200">
         <br>
-        <h4><li>Grower: <%= @found_user.name %></li></h4>
-        <li>Description: <%= @produce.description %></li>
-        <li>Looking to trade for: <%= @produce.trade %></li>
-      </ul>
-      </p>
+        <h4>Grower: <%= @found_user.name %></h4>
+        <p><u>Description</u>: <%= @produce.description %></p>
+        <p><u>Looking to trade for</u>: <%= @produce.trade %></p>
     </div>
     <div class="col-md-6">
-      <% if @offers.any?() %>
       <h2>Current Offers</h2>
+      <% if @offers.any?() %>
       <br>
       <% @offers.each do |offer| %>
       <h4><%= offer.user_name %></h4>

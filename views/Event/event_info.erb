@@ -1,11 +1,11 @@
 <h2>Event Details: <%= @event.title %> </h2>
 
-<h4><u>Description</u>: <%= @event.description %></h4>
-<h4><u>Date</u>: <%= @event.date %></h4>
-<h4><u>Neighborhood</u>: <%= @event.quadrant %></h4>
+<p><u>Description</u>: <%= @event.description %></p>
+<p><u>Date</u>: <%= @event.date %></p>
+<p><u>Neighborhood</u>: <%= @event.quadrant %></p>
 
 <br>
-<h4><u>Current Attendees:</u></h4>
+<h4>Current Attendees:</h4>
   <% if @event.users.any? %>
     <ul>
       <% @event.users.each do |user| %>

@@ -1,21 +1,16 @@
 <h2>Meet <%= @user.name %>!</h2>
-<ul>
-  <li><u>Bio</u>: <%= @user.profile %></li>
-  <li><u>Neighborhood</u>: <%= @user.quadrant %></li>
-</ul>
+  <p><u>Bio</u>: <%= @user.profile %></p>
+  <p><u>Neighborhood</u>: <%= @user.quadrant %></p>
 <br>
-<h4><%= @user.name %> is looking to trade:</h4>
+<h4><%= @user.name %> has this produce to trade:</h4>
 
 <% if @user.produces().any?() %>
-  <ul>
-    <% @user.produces().each() do |produce| %>
-      <li><%= produce.produce_type() %> </li>
-    <% end %>
-  </ul>
-
-  <% else %>
-    <p>This grower isn't ready to trade yet!</p>
+  <% @user.produces().each() do |produce| %>
+    <p><%= produce.produce_type() %> </p>
   <% end %>
+<% else %>
+  <p>This grower isn't ready to trade yet!</p>
+<% end %>
 
 <br>
 <p><a href="/users/<%= @user.id() %>/edit">Edit My Profile</a></p>
