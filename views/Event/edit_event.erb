@@ -1,14 +1,15 @@
-<h1>Edit <%= @event.title() %> event</h1>
+<h2>Edit <%= @event.title() %> event</h2>
 
 <form action="/events/<%= @event.id() %>" method="post">
   <input name="_method" type="hidden" value="patch">
 
     <label for="title">Rename the event:</label>
     <input id="title" name="title" type="text">
-
+    <br>
+    <br>
     <label for="date">Change date:</label>
     <input id="date" name="date" type="text">
-
+    <br>
     <button type="submit" class="button btn-success">Update Event</button>
 </form>
 
