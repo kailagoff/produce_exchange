@@ -7,10 +7,7 @@
 
 body {
   background-color: white;
-}
-
-p {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Julius Sans One', sans-serif;
 }
 
 ul {
@@ -56,6 +53,10 @@ button:hover{
 	font-size: 50px;
   letter-spacing: 5px;
   text-align: center;
+}
+
+.header a {
+  text-decoration: none;
 }
 
 .accounts img {

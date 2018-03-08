@@ -112,6 +112,7 @@ post('/produce/:id/offer') do
     @logged_user = User.find(@session_id)
     erb :"produce/produce_info"
   else
+    @user_id = session[:id]
     @produce.offers.push(@offer)
     @offers = Offer.all
     @id = @produce.user_id.to_i()
@@ -131,8 +132,10 @@ patch('/produce/:id') do
   trade = params['trade']
   @user = User.find(params.fetch("id").to_i())
   @produce = Produce.find(params.fetch("id").to_i())
-  @produce.update({:produce_type => produce_type})
-  erb :"produce/produce_info"
+  @id = @produce.user_id.to_i()
+  @found_user = User.find(@id)
+  @produce.update({:produce_type => produce_type, :description => description, :trade => trade})
+  redirect '/produce/available'
 end
 
 delete('/produce/:id') do

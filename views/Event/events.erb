@@ -5,11 +5,12 @@
     <div class="col-md-7">
       <ul>
       <% @events.each do |event| %>
-      <li><a href="/events/<%= event.id() %>"><%= event.title() %></a>
+      <h3><li><a href="/events/<%= event.id() %>"><%= event.title() %></a></li></h3>
       <% end %>
       </ul>
     </div>
     <div class="col-md-5">
+      <h3>Add event:</h3>
       <a href="/events/new"><img src="../img/events.png" alt="Add an event"></a>
       <hr>
       <div class="row">
@@ -24,12 +25,12 @@
               }
               #map {
                 height: 220px;
-                width: 40%;
+                width: 60%;
               }
             </style>
           </head>
           <body>
-            <h3>Google Community Garden Map</h3>
+            <h3>Portland Community Gardens</h3>
             <div id="map"></div>
             <script>
             function initMap(){
