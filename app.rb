@@ -46,7 +46,7 @@ post('/account') do #added all of this
     erb :"account/account_form"
   else
   session[:id] = @user.id
-  redirect '/'
+  erb :index
   end
 end
 

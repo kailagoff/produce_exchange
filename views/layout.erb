@@ -11,19 +11,25 @@
       <div class="header">
         <h1><span id="dark">Produce</span> <img src="../img/leaf.jpg" alt="leaf icon"> <span id="light">Exchange</span></h1>
       </div>
-      <div class="row" id= "nav">
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/produce/available">Produce</a></li>
-          <li><a href="/events">Events</a></li>
-          <li><a href="/users">Growers</a></li>
-          <li><a href="/logout">Log Out</a></li>
-        </ul>
+      <hr>
+      <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6" id= "nav">
+          <ul>
+            <li><p><a href="/">Home</a></li></p>
+            <li><p><a href="/produce/available">Produce</a></p></li>
+            <li><p><a href="/events">Events</a></p></li>
+            <li><p><a href="/users">Growers</a></p></li>
+            <li><p><a href="/logout">Log Out</a></p></li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+        </div>
       </div>
     </div>
     <div class='jumbotron'>
     </div>
-    <hr>
     <div class='container'>
       <%= yield %>
     </div>

@@ -1,19 +1,36 @@
 <% if @id != nil %>
   <% if @user != nil %>
     <h2>Welcome, <%= @user.name %>!</h2>
+    <hr>
   <% end %>
-    <h4><a href="/produce">Get started by adding produce you'd like to trade.</a></h4>
-    <a href="/produce/available">See what's available</a>
-    <br>
-    <a href="/produce">Post some produce</a>
-    <br>
-    <a href="/events/new">Add an event</a>
-    <br>
+    <div class="todo">
+      <div class="row">
+        <div class="col-md-4">
+          <a href="/produce/available"><img src="../img/available.png" alt="See what's available"></a>
+        </div>
+        <div class="col-md-4">
+          <a href="/produce"><img src="../img/postproduce.png" alt="Post produce"></a>
+        </div>
+        <div class="col-md-4">
+          <a href="/events/new"><img src="../img/events.png" alt="Add an event"></a>
+        </div>
+      </div>
+    </div>
   <% else %>
     <div class="accounts">
       <div class="row">
-        <a href="/createaccount"><img src="../img/createaccount.png" alt="Create Account"></a>
-        <a href="/login"><img src="../img/login.png" alt="Log In"></a>
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-3" id="createaccount">
+          <p><a href="/createaccount"><img src="../img/createaccount.png" alt="Create Account"></a></p>
+        </div>
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-3" id="login" >
+          <p><a href="/login"><img src="../img/login.png" alt="Log In"></a></p>
+        <div class="col-md-2">
+        </div>
+        </div>
       </div>
     </div>
 <% end %>

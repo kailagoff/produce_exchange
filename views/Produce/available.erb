@@ -1,10 +1,11 @@
 <% if @produce.any?() %>
-  <h2>Current Listings</h2>
+  <h2>Available Produce</h2>
   <hr>
   <form action="/search" method="post" class="form-container">
     <p><label for="produce_type">Search Produce</label>
     <input id="produce_type" name="produce_type" type="text" class="form-control"></p>
-    <p><button type="submit" class="btn btn-info">Search</button></p>
+    <p><button type="submit">Search</button></p>
+    <hr>
   </form>
   <% @produce.each do |produce| %>
   <h4><img src="<%= produce.image() %>" width="50" height ="50"><a href="/produce/<%= produce.id()%>">  <%= produce.produce_type %></a></h4>
