@@ -246,5 +246,3 @@ delete('/events/:id') do
   @events = Event.all()
   redirect '/events'
 end
-
-## instagram api

@@ -3,14 +3,12 @@
 <% if @events.any?() %>
   <div class="row">
     <div class="col-md-7">
-      <ul>
       <% @events.each do |event| %>
-      <h3><li><a href="/events/<%= event.id() %>"><%= event.title() %></a></li></h3>
+      <h4><a href="/events/<%= event.id() %>"><%= event.title() %></a></h4>
       <% end %>
-      </ul>
     </div>
     <div class="col-md-5">
-      <h3>Add event:</h3>
+      <h4>Add Event!</h4>
       <a href="/events/new"><img src="../img/events.png" alt="Add an event"></a>
       <hr>
       <div class="row">
@@ -30,7 +28,7 @@
             </style>
           </head>
           <body>
-            <h3>Portland Community Gardens</h3>
+            <h4>Portland Community Gardens</h4>
             <div id="map"></div>
             <script>
             function initMap(){
