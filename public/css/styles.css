@@ -5,6 +5,14 @@
   background-size: cover;
 }*/
 
+body {
+  background-color: white;
+}
+
+p {
+  font-family: 'Open Sans', sans-serif;
+}
+
 .jumbotron {
     background-image: url('https://images.unsplash.com/photo-1485637701894-09ad422f6de6?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=43432c56137d60cc6e8448fe36a43df9&auto=format&fit=crop&w=1320&q=80');
     height: 400px;
@@ -15,25 +23,64 @@
     text-shadow: black 0.3em 0.3em 0.3em;
 }
 
-/**{
-  border: 1px black solid;
-}*/
-
-body{
-  background-color: #EAECDF;
-  font-family: 'Open Sans', sans-serif;
+.header h1 {
+  font-family: 'Julius Sans One', sans-serif;
+	font-size: 50px;
 }
 
-.navbar1{
-  display: flex;
-  justify-content: space-around;
-  width: 70%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 15px;
-  /*border-bottom: 2px #837F8A solid;*/
+#nav {
+	text-align: center;
+	background-color: white;
 }
 
+#nav ul {
+	list-style: none;
+	text-align: center;
+	width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+	font-family: sans-serif;
+	font-size: 12px;
+}
+
+#nav ul li {
+	float: left;
+	padding: 15px 20px 15px 20px;
+	text-transform: uppercase;
+}
+
+#nav ul li:hover {
+	background-color: #b2d2b7;
+	color: white;
+}
+
+#nav a {
+	color: black;
+}
+
+
+#thin {
+	color: #094512;
+  letter-spacing: 5px;
+}
+
+#thick {
+  padding-left: 25px;
+	color: #b2d2b7;
+  letter-spacing: 25px;
+}
+
+#header {
+	text-align: center;
+	padding-top: 0px;
+	border-bottom: solid black 1px;
+	background-color: white;
+}
+
+
+
+
+/*
 a{
   color: #837F8A;
 }
@@ -52,4 +99,4 @@ li{
 h2 {
   text-decoration: underline;
   margin-top: 30px;
-}
+} */

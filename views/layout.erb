@@ -3,19 +3,27 @@
   <head>
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
     <link rel='stylesheet' href='../css/styles.css'>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One|Open+Sans" rel="stylesheet">
     <title>Produce Exchange</title>
   </head>
   <body>
-    <div class="navbar1">
-      <h3><a href="/">Home</a></h3>
-      <h3><a href="/produce/available">Produce</a></h3>
-      <h3><a href="/events">Events</a></h3>
-      <h3><a href="/users">Growers</a></h3>
-      <h3><a href="/logout">Log Out</a></h3>
+    <div class="container">
+      <div class="header">
+        <h1><span id="thin">Produce</span> <img src="../img/leaf.jpg" alt="leaf icon"> <span id="thick">Exchange</span></h1>
+      </div>
+      <div class="row" id= "nav">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/produce/available">Produce</a></li>
+          <li><a href="/events">Events</a></li>
+          <li><a href="/users">Growers</a></li>
+          <li><a href="/logout">Log Out</a></li>
+        </ul>
+      </div>
     </div>
     <div class='jumbotron'>
     </div>
+    <hr>
     <div class='container'>
       <%= yield %>
     </div>
