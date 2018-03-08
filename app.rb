@@ -95,8 +95,12 @@ get('/produce/:id') do
   @id = @produce.user_id.to_i()
   @found_user = User.find(@id)
   @session_id = session[:id]
-  @logged_user = User.find(@session_id)
-  erb :"produce/produce_info"
+  if @session_id == nil
+    redirect "/"
+  else
+    @logged_user = User.find(@session_id)
+    erb :"produce/produce_info"
+  end
 end
 
 post('/produce/:id/offer') do
