@@ -60,20 +60,12 @@ post('/search')do
 end
 
 get('/produce') do
+  @user_id = session[:id]
   erb :"produce/produce_form"
-end
-
-get('/produce') do
-  erb :"produce/produce_form"
-end
-
-get('/produce/available') do
-  @produce = Produce.all
-  erb :"produce/available"
 end
 
 post('/produce') do
-  @user_id = User.findbyname(params.fetch("name"))
+  @user_id = session[:id]
   produce = Produce.create({:produce_type=> params['produce_type'], :description => params['description'], :trade => params['trade'], :user_id => @user_id, :image => params['image']})
   if !produce.save()
     @error_message = "Make sure to include a produce type, description, and what you want to trade. The description MUST be less than 150 characters."
@@ -81,13 +73,17 @@ post('/produce') do
     erb :"produce/produce_form"
   else
   @produce = Produce.all
-  # session[:id] = @user.id #changed this
     if params[:image] != nil
       url = params[:image]
       produce.add_image(url)
     end
     erb :"produce/available"
   end
+end
+
+get('/produce/available') do
+  @produce = Produce.all
+  erb :"produce/available"
 end
 
 get('/produce/:id') do
