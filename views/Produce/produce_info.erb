@@ -9,7 +9,7 @@
   <h2>Current Offers</h2>
   <br>
   <% @offers.each do |offer| %>
-  <h4><%= @found_user.name %></h4>
+  <h4><%= offer.user_name %></h4>
     <li>Trade Item: <%= offer.trade_item %></li>
     <li>Description: <%= offer.description %></li>
   <% end %>
@@ -22,11 +22,12 @@
   <div class="form">
     <form action="/produce/<%= @produce.id %>/offer" method="post" class="form-container">
       <input id="produce_id" name="produce_id" type="hidden" value="<%= @produce.id %>">
+      <input id="user_name" name="user_name" type="hidden" value="<%=   @logged_user.name %>">
       <p><label for="trade_item">What do you have to trade?</label>
       <input id="trade_item" name="trade_item" type="text" class="form-control"></p>
       <p><label for="description">Tell the grower more about yourself!</label>
       <input id="description" name="description" type="text" class="form-control"></p>
-      <p><button type="submit" class="btn btn-info">Email User</button></p>
+      <p><button type="submit" class="btn btn-info">Submit Offer</button></p>
     </form>
     <% if @error_message != nil %>
       <%= @error_message %>

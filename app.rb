@@ -31,6 +31,7 @@ post('/login') do #this too
       erb :"account/login_form"
     else
   session[:id] = @user.id
+  @id = session[:id]
   erb :index
   end
 end
@@ -46,6 +47,7 @@ post('/account') do #added all of this
     erb :"account/account_form"
   else
   session[:id] = @user.id
+  @id = session[:id]
   erb :index
   end
 end
@@ -90,8 +92,8 @@ get('/produce/available') do
 end
 
 get('/produce/:id') do
-  @offers = Offer.all
   @produce = Produce.find(params.fetch("id").to_i())
+  @offers = @produce.offers
   @id = @produce.user_id.to_i()
   @found_user = User.find(@id)
   @session_id = session[:id]
@@ -102,10 +104,12 @@ end
 post('/produce/:id/offer') do
   @user_id = session[:id]
   @produce = Produce.find(params.fetch("id").to_i())
-  @offer = Offer.create({:trade_item => params['trade_item'], :description => params['description'], :produce_id => params['produce_id'], :user_id => @user_id})
+  @session_id = session[:id]
+  @logged_user = User.find(@session_id)
+  @offer = Offer.create({:trade_item => params['trade_item'], :description => params['description'], :produce_id => params['produce_id'], :user_name => params['user_name'], :user_id => @user_id})
   if !@offer.save()
     @error_message = "Make sure to include an item to trade, and a description."
-    @offers = Offer.all
+    @offers = @produce.offers
     @id = @produce.user_id.to_i()
     @found_user = User.find(@id)
     @session_id = session[:id]
@@ -113,7 +117,7 @@ post('/produce/:id/offer') do
     erb :"produce/produce_info"
   else
     @produce.offers.push(@offer)
-    @offers = Offer.all
+    @offers = @produce.offers
     @id = @produce.user_id.to_i()
     @found_user = User.find(@id)
     erb :"produce/produce_info"
