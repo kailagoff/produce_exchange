@@ -30,8 +30,8 @@ describe('Produce') do
     it("find produce according type") do
       produce1 = Produce.create({:produce_type => "lettuce", :description => "a".*(140), :trade => "strawberries", :id => nil})
       produce2 = Produce.create({:produce_type => "grape", :description => "a".*(140), :trade => "strawberries", :id => nil})
-      produce3 = Produce.create({:produce_type => "tomatoes", :description => "a".*(140), :trade => "strawberries", :id => nil})
-      expect(Produce.findproduce("lettuce")).to(eq([produce1]))
+      produce3 = Produce.create({:produce_type => "lettuce", :description => "a".*(140), :trade => "strawberries", :id => nil})
+      expect(Produce.findproduce("lettuce")).to(eq([produce1, produce3]))
     end
   end
 end
