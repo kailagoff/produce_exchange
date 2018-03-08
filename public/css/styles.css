@@ -13,6 +13,10 @@ p {
   font-family: 'Open Sans', sans-serif;
 }
 
+ul {
+  list-style: none;
+}
+
 h2 {
   font-family: 'Julius Sans One', sans-serif;
 	font-size: 35px;
@@ -110,27 +114,3 @@ button:hover{
   align: right;
   text-align: right;
 }
-
-
-
-
-/*
-a{
-  color: #837F8A;
-}
-
-ul {
-  list-style: none;
-}
-li a{
-  font-size: 18px;
-}
-
-li{
-  margin-top: 8px;
-}
-
-h2 {
-  text-decoration: underline;
-  margin-top: 30px;
-} */
