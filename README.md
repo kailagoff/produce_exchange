@@ -54,7 +54,6 @@ _Produce Exchange allows users to add leftover produce from their garden to a fo
   * ActiveRecord
 
 ### License
-
-  *MIT License*
+*MIT License*
 
 Copyright (c) 2018 **Maggie Summers, Kaila Goff, Anna Marie Cooper, Bryce Frazier**
